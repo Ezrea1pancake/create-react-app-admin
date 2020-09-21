@@ -69,7 +69,6 @@
         "start": "craco start",
         "build": "craco build",
         "test": "craco test",
-        "commitmsg": "validate-commit-msg",
         "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
     },
     "browserslist": {
@@ -142,17 +141,19 @@
         ]
     },
     "devDependencies": {
+        "cz-conventional-changelog": "^3.3.0",
         "eslint-config-airbnb": "^18.2.0",
         "eslint-config-prettier": "^6.11.0",
         "eslint-plugin-html": "^6.1.0",
         "eslint-plugin-prettier": "^3.1.4",
         "husky": "^4.3.0",
+        "lint-staged": "^10.4.0",
         "prettier": "2.1.2",
         "validate-commit-msg": "^2.14.0"
     },
     "husky": {
         "hooks": {
-            "pre-commit": "lint-staged"
+            "pre-commit": "lint-staged && validate-commit-msg"
         }
     },
     "lint-staged": {
@@ -161,5 +162,10 @@
             "eslint --fix",
             "git add"
         ]
+    },
+    "config": {
+        "commitizen": {
+            "path": "./node_modules/cz-conventional-changelog"
+        }
     }
 }
