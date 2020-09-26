@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './index.less';
 import * as serviceWorker from './serviceWorker';
 import Routes from './router';
 import { Provider } from 'react-redux';

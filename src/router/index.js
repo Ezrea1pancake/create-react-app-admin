@@ -1,48 +1,32 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import App from '../components/App';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-export default () => {
-    return (
-        <Router>
-            <div>
-                <nav>
-                    <ul>
-                        <li>
-                            <Link to="/">Home</Link>
-                        </li>
-                        <li>
-                            <Link to="/About">About</Link>
-                        </li>
-                        <li>
-                            <Link to="/Users">Users</Link>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-            <Switch>
-                <Route path="/about">
-                    <About />
-                </Route>
-                <Route path="/users">
-                    <Users />
-                </Route>
-                <Route path="/">
-                    <Home />
-                </Route>
-            </Switch>
-        </Router>
-    );
-};
+import Home from '../pages/base/Home';
+import { Article, QuickInfo } from '../pages/information';
+// import App from '../components/App';
 
-function Home() {
-    return <App />;
-}
+export default () => (
+    <Router basename="/distribute-manager">
+        <Switch>
+            <Route path="/">
+                <Home>
+                    <Switch>
+                        <Route path="/about">
+                            <About />
+                        </Route>
+                        <Route path="/article">
+                            <Article />
+                        </Route>
+                        <Route path="/quick-info">
+                            <QuickInfo />
+                        </Route>
+                    </Switch>
+                </Home>
+            </Route>
+        </Switch>
+    </Router>
+);
 
 function About() {
     return <h2>About</h2>;
-}
-
-function Users() {
-    return <h2>Home</h2>;
 }
