@@ -1,6 +1,6 @@
 import React from 'react';
 import { Menu } from 'antd';
-import SIDE_BAR_LIST from '../../configs/sideBarList';
+import SIDE_BAR_LIST from '../../configs/authorized/sideBarList';
 import { useHistory } from 'react-router-dom';
 // import { withRouter } from 'react-router-dom';
 

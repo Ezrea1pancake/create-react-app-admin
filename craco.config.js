@@ -1,3 +1,4 @@
+const path = require('path');
 const CracoLessPlugin = require('craco-less');
 
 module.exports = {
@@ -16,4 +17,20 @@ module.exports = {
             },
         },
     ],
+    webpack: {
+        alias: {
+            '@': path.join(__dirname, '/src'),
+        },
+    },
+    devServer: {
+        proxy: {
+            '/api': {
+                target: 'https://gdxdtest.moguyun.com',
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/api': '',
+                },
+            },
+        },
+    },
 };
