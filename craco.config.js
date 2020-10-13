@@ -20,6 +20,8 @@ module.exports = {
     webpack: {
         alias: {
             '@': path.join(__dirname, '/src'),
+            pages: path.join(__dirname, '/src/pages'),
+            router: path.join(__dirname, '/src/router'),
         },
     },
     devServer: {

@@ -1,6 +1,5 @@
 import axios from 'axios';
 import qs from 'qs';
-// import { browserHistory } from 'react-router';
 import { message } from 'antd';
 
 // const { CancelToken } = axios;
@@ -35,14 +34,16 @@ instance.interceptors.response.use(
         if (!(response.data && response.data.ret)) {
             return Promise.reject(response);
         }
-        if (response.data.ret === 200) {
-            return Promise.resolve(response);
-        } else {
-            message.warning(response.data.msg || '用户登录信息已过期');
-            if (response.data.ret === 102000) {
-                // browserHistory.push('/login');
+        if (response.status === 200) {
+            if (response.data.ret === 0) {
+                return Promise.resolve(response);
+            } else {
+                message.warning(response.data.msg || '用户登录信息已过期');
+                // if (response.data.ret === 102000) {
+                //     history.push('/login');
+                // }
+                return Promise.reject(response);
             }
-            return Promise.reject(response);
         }
     },
     (error) => Promise.reject(error),
