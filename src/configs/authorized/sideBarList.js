@@ -27,3 +27,5 @@ const SIDE_BAR_LIST = [
 ];
 
 export default SIDE_BAR_LIST;
+
+export const DEFAULT_ROUTE = 'article';

@@ -2,7 +2,8 @@ import React from 'react';
 import { Menu } from 'antd';
 import SIDE_BAR_LIST from '../../configs/authorized/sideBarList';
 import { useHistory } from 'react-router-dom';
-// import { withRouter } from 'react-router-dom';
+
+import { DEFAULT_ROUTE } from 'configs/authorized/sideBarList';
 
 const { SubMenu } = Menu;
 
@@ -18,7 +19,7 @@ const SideBar = () => {
             theme="dark"
             mode="inline"
             defaultOpenKeys={['sub0']}
-            defaultSelectedKeys={[pathname.split('/')[1]]}
+            defaultSelectedKeys={[pathname.split('/')[1] || DEFAULT_ROUTE]}
             onClick={(e) => {
                 history.push(`/${e.key}`);
             }}

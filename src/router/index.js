@@ -1,16 +1,14 @@
 import React from 'react';
-// import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { Router, Switch, Route } from 'react-router';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
-import Home from '../pages/base/Home';
-import { Article, QuickInfo } from '../pages/information';
-// import App from '../components/App';
+import Home from 'pages/base/Home';
+import { Article, QuickInfo } from 'pages/information';
 import Login from 'pages/base/Login';
-import { browserHistory } from 'router/history';
+
+import { DEFAULT_ROUTE } from 'configs/authorized/sideBarList';
 
 export default () => (
-    <Router history={browserHistory}>
-        {/* <Router basename="distribute-manager"> */}
+    <Router basename="distribute-manager">
         <Switch>
             <Route exact path="/login" component={Login} />
             <Route path="/">
@@ -18,6 +16,7 @@ export default () => (
                     <Switch>
                         <Route path="/article" component={Article} />
                         <Route path="/quick-info" component={QuickInfo} />
+                        <Redirect to={`/${DEFAULT_ROUTE}`} />
                     </Switch>
                 </Home>
             </Route>
