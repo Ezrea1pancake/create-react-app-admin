@@ -5,7 +5,7 @@ import * as serviceWorker from './serviceWorker';
 import Routes from './router';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import reducers from './redux/reducers';
+import reducers from './store/reducers';
 import { hot } from 'react-hot-loader/root';
 
 const HotRoutes = hot(Routes);

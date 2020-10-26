@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import Home from 'pages/base/Home';
 import { Article, QuickInfo } from 'pages/information';
 import Login from 'pages/base/Login';
+import PrivateRoute from 'components/base/PrivateRoute';
 
 import { DEFAULT_ROUTE } from 'configs/authorized/sideBarList';
 
@@ -14,7 +15,7 @@ export default () => (
             <Route path="/">
                 <Home>
                     <Switch>
-                        <Route path="/article" component={Article} />
+                        <PrivateRoute path="/article" component={Article} />
                         <Route path="/quick-info" component={QuickInfo} />
                         <Redirect to={`/${DEFAULT_ROUTE}`} />
                     </Switch>

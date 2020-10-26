@@ -21,3 +21,15 @@ export const toggleTodo = (id) => {
         id,
     };
 };
+
+export const requestLogin = () => {
+    return {
+        type: 'REQUEST_LOGIN',
+    };
+};
+
+export const logined = () => {
+    return {
+        type: 'LOGINED',
+    };
+};
