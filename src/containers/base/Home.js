@@ -1,7 +1,7 @@
 import React from 'react';
 import { Layout } from 'antd';
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
-import '@/less/Home.less';
+import './Home.less';
 import SideBar from '@/components/base/SideBar';
 
 const { Header, Sider, Content } = Layout;

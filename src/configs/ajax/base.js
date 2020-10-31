@@ -20,7 +20,7 @@ instance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlenco
 instance.interceptors.request.use(
     (config) => {
         process.env.NODE_ENV === 'development' &&
-            (config.url = `/api${config.url}&ignoreCsrfToken=true`);
+            (config.url = `${config.url}&ignoreCsrfToken=true`);
         token && (config.headers.Authorization = token);
         return config;
     },
@@ -31,17 +31,14 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
     (response) => {
-        if (!(response.data && response.data.ret)) {
+        if (!(response.data && response.data.ret === 0)) {
             return Promise.reject(response);
         }
         if (response.status === 200) {
             if (response.data.ret === 0) {
-                return Promise.resolve(response);
+                return Promise.resolve(response.data);
             } else {
                 message.warning(response.data.msg || '用户登录信息已过期');
-                // if (response.data.ret === 102000) {
-                //     history.push('/login');
-                // }
                 return Promise.reject(response);
             }
         }
@@ -58,7 +55,7 @@ export const GET = (url, data) => {
         .get(url, {
             params: data,
         })
-        .then((res) => res.data)
+        .then((res) => res)
         .catch((error) => console.log('ajaxError', error));
 };
 
@@ -72,6 +69,6 @@ export const POST = (url, data, config) => {
 
     return instance
         .post(url, postData, config)
-        .then((res) => res.data)
+        .then((res) => res)
         .catch((error) => console.log('ajaxError', error));
 };
