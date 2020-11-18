@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { requestLogin, logined } from 'store/actions';
+import { requestLogin, logined, changeUserInfo } from 'store/actions';
 import './Login.less';
 
 import { Form, Input, Button } from 'antd';
@@ -30,10 +30,11 @@ const mapDispatchToProps = (dispatch) => {
     return {
         requestLogin: () => dispatch(requestLogin()),
         logined: () => dispatch(logined()),
+        changeUserInfo: (name) => dispatch(changeUserInfo(name)),
     };
 };
 
-const Login = ({ location, history, isLogin, loading, requestLogin, logined }) => {
+const Login = ({ location, history, isLogin, loading, requestLogin, logined, changeUserInfo }) => {
     const [verifyCodeUrl, setVerifyCodeUrl] = useState(getShopAuthImage());
     const [loginForm] = Form.useForm();
 
@@ -65,12 +66,14 @@ const Login = ({ location, history, isLogin, loading, requestLogin, logined }) =
                 ...values,
                 pwd: pwdStr,
             }).then((loginInfo) => {
+                console.log(loginInfo);
                 if (loginInfo.ret !== 0) {
                     return;
                 }
                 requestLogin();
                 setTimeout(() => {
                     logined();
+                    changeUserInfo(loginInfo.nickname);
                     history.push('/article');
                 }, 1500);
             });

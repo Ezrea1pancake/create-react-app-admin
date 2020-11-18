@@ -2,7 +2,8 @@ import React from 'react';
 import { Layout } from 'antd';
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import './Home.less';
-import SideBar from '@/components/base/SideBar';
+import SideBar from 'components/base/SideBar';
+import Logout from 'containers/base/Logout';
 
 const { Header, Sider, Content } = Layout;
 
@@ -27,7 +28,7 @@ class Home extends React.Component {
                     <SideBar />
                 </Sider>
                 <Layout className="site-layout">
-                    <Header className="site-layout-background site-layout-top">
+                    <Header className="site-layout-background site-layout-top custom-header">
                         {React.createElement(
                             this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
                             {
@@ -35,6 +36,7 @@ class Home extends React.Component {
                                 onClick: this.toggle,
                             },
                         )}
+                        <Logout />
                     </Header>
                     <Content
                         className="site-layout-background"

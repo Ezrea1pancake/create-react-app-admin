@@ -33,3 +33,16 @@ export const logined = () => {
         type: 'LOGINED',
     };
 };
+
+export const logout = () => {
+    return {
+        type: 'LOGOUT',
+    };
+};
+
+export const changeUserInfo = (name) => {
+    return {
+        type: 'CHANGE_USERINFO',
+        name,
+    };
+};

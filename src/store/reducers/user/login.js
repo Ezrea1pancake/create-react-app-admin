@@ -20,6 +20,12 @@ const login = (state = initail, action) => {
                 loading: false,
             };
             break;
+        case 'LOGOUT':
+            loginState = {
+                isLogin: false,
+                loading: false,
+            };
+            break;
         default:
             loginState = state;
             break;

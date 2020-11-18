@@ -9,7 +9,7 @@ import { Article, QuickInfo } from 'pages/information';
 import Login from 'pages/base/Login';
 
 // 功能组件
-import PrivateRoute from 'components/base/PrivateRoute';
+import PrivateRoute from 'containers/base/PrivateRoute';
 
 import { DEFAULT_ROUTE } from 'configs/authorized/sideBarList';
 
