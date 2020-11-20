@@ -39,7 +39,7 @@ class Home extends React.Component {
                         <Logout />
                     </Header>
                     <Content
-                        className="site-layout-background"
+                        className="site-layout-background main-container"
                         style={{
                             margin: '24px 16px',
                             padding: 24,

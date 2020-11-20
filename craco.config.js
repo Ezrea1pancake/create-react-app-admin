@@ -50,6 +50,7 @@ module.exports = {
             containers: path.join(__dirname, '/src/containers'),
             less: path.join(__dirname, '/src/less'),
             api: path.join(__dirname, '/src/api'),
+            utils: path.join(__dirname, '/src/utils'),
         },
     },
     devServer: {

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { requestLogin, logined, changeUserInfo } from 'store/actions';
 import './Login.less';
 
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, message } from 'antd';
 
 import { getShopAuthImage, loginRequest, requestPublicKey } from 'api/user';
 import JSEncrypt from 'jsencrypt';
@@ -42,7 +42,7 @@ const Login = ({ location, history, isLogin, loading, requestLogin, logined, cha
         return new Promise((resolve, reject) => {
             requestPublicKey().then((keyInfo) => {
                 if (keyInfo.ret !== 0) {
-                    this.$message.info(keyInfo.msg);
+                    message.warning(keyInfo.msg);
                     reject(keyInfo.msg);
                     return;
                 }

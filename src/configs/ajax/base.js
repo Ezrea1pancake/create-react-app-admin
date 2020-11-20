@@ -31,7 +31,7 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
     (response) => {
-        if (!(response.data && response.data.ret === 0)) {
+        if (response.status !== 200 || !response.data) {
             return Promise.reject(response);
         }
         if (response.status === 200) {
@@ -39,7 +39,7 @@ instance.interceptors.response.use(
                 return Promise.resolve(response.data);
             } else {
                 message.warning(response.data.msg || '用户登录信息已过期');
-                return Promise.reject(response);
+                return Promise.reject(response.data);
             }
         }
     },

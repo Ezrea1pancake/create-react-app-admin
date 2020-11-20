@@ -21,7 +21,7 @@ export default () => (
                 <Home>
                     <Switch>
                         <PrivateRoute path="/article" component={Article} />
-                        <Route path="/quick-info" component={QuickInfo} />
+                        <PrivateRoute path="/quick-info" component={QuickInfo} />
                         <Redirect to={`/${DEFAULT_ROUTE}`} />
                     </Switch>
                 </Home>
