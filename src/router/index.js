@@ -6,7 +6,7 @@ import Home from 'containers/base/Home';
 
 // 页面组件
 import { Article, QuickInfo } from 'pages/information';
-import Login from 'pages/base/Login';
+import Login from 'pages/login';
 
 // 功能组件
 import PrivateRoute from 'containers/base/PrivateRoute';

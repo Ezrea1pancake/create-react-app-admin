@@ -3,7 +3,7 @@ import { Form, Col, Row, Input, Select, Button, Space } from 'antd';
 
 const { Option } = Select;
 
-const SearchForm = ({ changeSearchData, initialValues }) => {
+const SearchForm = ({ changeSearchData, initialValues, addArticle }) => {
     const [form] = Form.useForm();
 
     const onFinish = (values) => {
@@ -69,7 +69,14 @@ const SearchForm = ({ changeSearchData, initialValues }) => {
                         <Button type="primary" htmlType="submit">
                             查询
                         </Button>
-                        <Button type="primary">添加</Button>
+                        <Button
+                            type="primary"
+                            onClick={() => {
+                                addArticle(true);
+                            }}
+                        >
+                            添加
+                        </Button>
                     </Space>
                 </Col>
             </Row>

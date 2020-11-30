@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { requestLogin, logined, changeUserInfo } from 'store/actions';
-import './Login.less';
+import './style.less';
 
 import { Form, Input, Button, message } from 'antd';
 
@@ -36,7 +36,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const Login = ({ location, history, isLogin, loading, requestLogin, logined, changeUserInfo }) => {
     const [verifyCodeUrl, setVerifyCodeUrl] = useState(getShopAuthImage());
-    const [loginForm] = Form.useForm();
+    const [form] = Form.useForm();
 
     function getPublicKey() {
         return new Promise((resolve, reject) => {
@@ -87,7 +87,7 @@ const Login = ({ location, history, isLogin, loading, requestLogin, logined, cha
                 <div className="login-form">
                     <Form
                         {...layout}
-                        form={loginForm}
+                        form={form}
                         name="nest-messages"
                         onFinish={loginSubmit}
                         validateMessages={validateMessages}

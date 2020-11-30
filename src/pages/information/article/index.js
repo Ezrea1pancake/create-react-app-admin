@@ -1,12 +1,15 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { message } from 'antd';
-import SearchForm from '@/components/information/article/Search';
-import ArticleTable from '@/components/information/article/Table';
-import ArticlePegination from '@/components/information/article/Pegination';
+import SearchForm from './components/Search';
+import Table from './components/Table';
+import Pegination from './components/Pegination';
+import FormModal from './components/FormModal';
 
 import { queryShopComponentsByPage } from '@/api/information';
 import { DEFAULT_PAGENO, DEFAULT_PAGESIZE } from '@/configs/constant/information';
+
+import './style.less';
 
 class Article extends React.Component {
     constructor() {
@@ -27,6 +30,9 @@ class Article extends React.Component {
                 materialType: '',
             },
             loading: false,
+            visible: false,
+            current: {},
+            done: false,
         };
     }
 
@@ -82,6 +88,12 @@ class Article extends React.Component {
         );
     };
 
+    addArticle = (visible) => {
+        this.setState({
+            visible,
+        });
+    };
+
     changePageData = (params) => {
         this.setState(
             {
@@ -94,26 +106,60 @@ class Article extends React.Component {
         );
     };
 
+    showEditModal = (row) => {
+        const form = {
+            name: row.name,
+            profile: row.profile,
+            articleType: row.articleType,
+            materialType: row.materialType,
+        };
+        this.setState({
+            current: form,
+            visible: true,
+        });
+    };
+
+    setVisible = (value) => {
+        this.setState({
+            visible: value,
+        });
+    };
+
+    setDone = (value) => {
+        this.setState({
+            done: value,
+        });
+    };
+
     componentDidMount() {
         this.getTableList();
     }
 
     render() {
+        const { searchData, pageData, tableData, visible, loading, current } = this.state;
         return (
             <div>
                 <div className="search-container">
                     <SearchForm
-                        initialValues={this.state.searchData}
-                        changeSearchData={this.changeSearchData.bind(this)}
+                        initialValues={searchData}
+                        changeSearchData={this.changeSearchData}
+                        addArticle={this.addArticle}
                     />
                 </div>
-                <ArticleTable loading={this.state.loading} tableData={this.state.tableData} />
+                <Table loading={loading} tableData={tableData} showEditModal={this.showEditModal} />
                 <div className="pegination-container">
-                    <ArticlePegination
-                        pageData={this.state.pageData}
-                        changePageData={this.changePageData.bind(this)}
-                    />
+                    <Pegination pageData={pageData} changePageData={this.changePageData} />
                 </div>
+                <FormModal
+                    visible={visible}
+                    current={current}
+                    onDone={() => {
+                        this.setDone(false);
+                        this.setVisible(false);
+                    }}
+                    onSubmit={() => this.setVisible(false)}
+                    onCancel={() => this.setVisible(false)}
+                />
             </div>
         );
     }
